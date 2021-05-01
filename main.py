@@ -10,7 +10,10 @@ def zac():
     print("\033[31m----------------------------------\033[0m")
 zac()
 
-print("1 漏洞扫描器，2 文件上传扫描,3 获取当前网站下所有连接")
+print("1 漏洞扫描器",
+      "2 文件上传扫描",
+      "3 获取当前网站下所有连接",
+      "4 xss扫描")
 a = int(input("请输入你需要使用的扫描器编号"))
 
 if a==1:
@@ -21,5 +24,7 @@ elif a==2:
     exit()
 elif a==3:
     os.system('linksearch.py')
+elif a==4:
+    os.system('xssscan.py')
 
 

